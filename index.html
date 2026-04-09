@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Care Hub Release Notes</title>
+    <style>
+        :root {
+            --primary-blue: #0045FF;
+            --background-gray: #F8F9FA;
+            --text-dark: #1A1A1A;
+            --text-muted: #666666;
+            --border-color: #E0E0E0;
+            --tag-bg: #E7EDFF;
+            --tag-text: #0045FF;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: white;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            margin: 0 0 8px 0;
+            font-weight: 700;
+        }
+
+        .header-title .date-info {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .hartmann-logo {
+            width: 120px;
+        }
+
+        .tabs {
+            display: flex;
+            background-color: var(--background-gray);
+            padding: 4px;
+            border-radius: 8px;
+            width: fit-content;
+            margin-bottom: 32px;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+
+        .tab.active {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .tab.inactive {
+            color: var(--text-muted);
+        }
+
+        .release-item {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .release-date {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .version-tag {
+            display: inline-block;
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .release-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .release-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .see-details {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .see-details svg {
+            margin-left: 4px;
+        }
+
+        /* Detail View Styles */
+        .detail-view {
+            display: none;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            margin-bottom: 32px;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .back-button svg {
+            margin-right: 8px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .sub-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        .nested-list {
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 24px 0;
+        }
+
+        /* Utility */
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- List View -->
+        <div id="listView" class="view visible">
+            <div class="header">
+                <div class="header-title">
+                    <h1>Easy Care Hub Release Notes</h1>
+                    <div class="date-info">11 Feb, 2025 14:04 h</div>
+                </div>
+                <img src="https://www.hartmann.info/etc.clientlibs/hartmann/clientlibs/clientlib-site/resources/images/hartmann-logo.svg" alt="HARTMANN" class="hartmann-logo">
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" onclick="showAll()">All</button>
+                <button class="tab inactive" onclick="showLastRelease()">Last release</button>
+            </div>
+
+            <div id="releaseItems">
+                <div class="release-item" id="lastRelease">
+                    <div class="release-date">March 30, 2026</div>
+                    <div class="version-tag">v 1.0.0</div>
+                    <div class="release-title">Incremental Improvements to Core Modules</div>
+                    <div class="release-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis nisl sed nunc fermentum consequat. Integer facilisis, magna ac aliquet lacinia, justo erat laoreet mauris, eget ultricies nulla lorem at nisl. Curabitur posuere lectus at sapien porttitor, vel sodales ligula malesuada.
+                    </div>
+                    <a href="#" class="see-details" onclick="showDetail()">
+                        See details
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="release-item other-release" style="border-bottom: none;">
+                    <div class="release-date">March 24, 2026</div>
+                    <div class="version-tag">v 0.9.5</div>
+                    <div class="release-title">Core Performance and UI Enhancements</div>
+                    <div class="release-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis nisl sed nunc fermentum consequat. Integer facilisis, magna ac aliquet lacinia, justo erat laoreet mauris, eget ultricies nulla lorem at nisl. Curabitur posuere lectus at sapien porttitor, vel sodales ligula malesuada.
+                    </div>
+                    <a href="#" class="see-details" onclick="showDetail()">
+                        See details
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail View -->
+        <div id="detailView" class="view hidden">
+            <div class="header">
+                <button class="back-button" onclick="showList()">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Back
+                </button>
+                <img src="https://www.hartmann.info/etc.clientlibs/hartmann/clientlibs/clientlib-site/resources/images/hartmann-logo.svg" alt="HARTMANN" class="hartmann-logo">
+            </div>
+
+            <div class="release-date">March 30, 2026</div>
+            <div class="version-tag">v 1.0.0</div>
+            <div class="release-title">Incremental Improvements to Core Modules</div>
+
+            <div class="section">
+                <div class="section-title">1. Login Screen:</div>
+                <ul class="bullet-list">
+                    <li>Cookies are integrated to the platform.</li>
+                </ul>
+                <div class="divider"></div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">2. Vitals Screen:</div>
+                <div class="sub-section-title">2.1. Notification Sidebar:</div>
+                <ul class="bullet-list">
+                    <li>When a notification is clicked, users now are directed to the resident profile.
+                        <ul class="bullet-list nested-list">
+                            <li>When a notification is marked as reviewed, it can be checked later in resident profile</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="divider"></div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">3. Residents Screen:</div>
+                <div class="sub-section-title">3.1. Individual Thresholds:</div>
+                <ul class="bullet-list">
+                    <li>All the edit changes can be saved without an issue now. E.g. change individual thresholds from global settings to manual and make the duration of out of bed 100 minutes.</li>
+                    <li>When the Global setting is selected in Individual Threshold settings, any change made to the Global settings is automatically applied to the Individual Threshold screen.</li>
+                </ul>
+
+                <div class="sub-section-title" style="margin-top: 24px;">3.2. Resident Overview:</div>
+                <ul class="bullet-list">
+                    <li>Adding a new location to a resident without a device now shows a warning pop up.</li>
+                </ul>
+
+                <div class="sub-section-title" style="margin-top: 24px;">3.3. Trends:</div>
+                <ul class="bullet-list">
+                    <li>Vertical max. values are now calculated as +5 on the threshold lines.</li>
+                    <li>Night report values formatting changed for English and German. E.g. English: 1h 2m 3s, Deutsch: 1 h 2 min 3 s</li>
+                </ul>
+                <div class="divider"></div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">4. Notifications Screen:</div>
+                <div class="sub-section-title">Bed Exit Notifications:</div>
+                <ul class="bullet-list">
+                    <li>Time period editing functionality changed with new dropdown component implementation.</li>
+                    <li>Threshold activity is now seen in view mode with an Active badge.</li>
+                    <li>Filtering the notifications based on Type, Resident ID, Device ID, Date Range and Status is now available.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAll() {
+            document.querySelectorAll('.other-release').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('.tab').forEach(tab => {
+                if (tab.innerText === 'All') {
+                    tab.classList.add('active');
+                    tab.classList.remove('inactive');
+                } else {
+                    tab.classList.add('inactive');
+                    tab.classList.remove('active');
+                }
+            });
+        }
+
+        function showLastRelease() {
+            document.querySelectorAll('.other-release').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab').forEach(tab => {
+                if (tab.innerText === 'Last release') {
+                    tab.classList.add('active');
+                    tab.classList.remove('inactive');
+                } else {
+                    tab.classList.add('inactive');
+                    tab.classList.remove('active');
+                }
+            });
+        }
+
+        function showDetail() {
+            document.getElementById('listView').classList.remove('visible');
+            document.getElementById('listView').classList.add('hidden');
+            document.getElementById('detailView').classList.remove('hidden');
+            document.getElementById('detailView').classList.add('visible');
+            window.scrollTo(0, 0);
+        }
+
+        function showList() {
+            document.getElementById('detailView').classList.remove('visible');
+            document.getElementById('detailView').classList.add('hidden');
+            document.getElementById('listView').classList.remove('hidden');
+            document.getElementById('listView').classList.add('visible');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
